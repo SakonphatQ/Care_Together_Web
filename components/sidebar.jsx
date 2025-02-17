@@ -15,7 +15,8 @@ import {
   Folders,
   CreditCard,
   Settings,
-  User
+  User,
+  Phone
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -23,18 +24,16 @@ const Sidebar = () => {
   return <Command className='bg-secondary rounded-none'>
     <CommandList>
       <CommandEmpty>No results found.</CommandEmpty>
-
       <CommandItem>
         <LayoutDashboard className='mr-2 h-4 w-4' />
-        <Link href='/'>Dashboard</Link>
+        <Link href='/'>ข้อมูลสุขภาพของฉัน</Link>
       </CommandItem>
       <CommandItem>
         <Newspaper className='mr-2 h-4 w-4' />
-        <Link href='/posts'>Posts</Link></CommandItem>
+        <Link href='/posts'>กรอกข้อมูลสุขภาพ</Link></CommandItem>
       <CommandItem>
-        <Folders className='mr-2 h-4 w-4' />
-        <Link href='/#'>Calculator</Link></CommandItem>
-
+        <Phone className='mr-2 h-4 w-4' />
+        <Link href='/Call'>ติดต่อผู้เชียวชาน</Link></CommandItem>
       <CommandSeparator />
     </CommandList>
   </Command>

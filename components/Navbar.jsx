@@ -16,8 +16,11 @@ import {
     return <div className="bg-primary bg-white text-black py-2 px-5 flex justify-between border-b-2 border-black">
 
         <Link href='/'>
-            <Image src={logo} alt='TraversyPress' width={40} />
+            <Image src={logo} alt='TraversyPress' width={50} />
+            <div className='flex items-center text-blue-800 font-semibold text-xl'>ดูแลกัน - Care Together</div>
         </Link>
+        
+
         <div className='flex space-x-5 items-center font-semibold'>
             <Link href='/about'>
             <div className='text-black'>เกี่ยวกับเรา</div>
