@@ -28,7 +28,7 @@ import {
             <Link href='/services'>
             <div className='text-black'>บริการของเรา</div>
             </Link>
-            <Link href='/how-to'>
+            <Link href='/HowTO'>
             <div className='text-black'>วิธีใช้งาน</div>
             </Link>
             <Link href='/contact'>

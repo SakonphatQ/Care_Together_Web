@@ -1,6 +1,7 @@
 "use client";  // ✅ เพิ่มบรรทัดนี้ที่ด้านบน
 
 import React, { useState } from "react";
+import { Button } from '@/components/ui/button';
 
 const UserForm = () => {
   const [pressure, setPressure] = useState("กลาง");
@@ -23,7 +24,8 @@ const UserForm = () => {
           <div className="flex-1">
             <label className="block text-sm">เพศ</label>
             <select className="w-full border p-2 rounded">
-              <option>XXX</option>
+              <option>ชาย</option>
+              <option>หญิง</option>
             </select>
           </div>
         </div>
@@ -53,7 +55,7 @@ const UserForm = () => {
         </div>
 
         {/* ปุ่มบันทึก */}
-        <button className="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded">บันทึก</button>
+        <Button className="w-full mt-4 px-4 py-2 bg-blue-500 text-white rounded">บันทึก</Button>
       </div>
     </div>
   );

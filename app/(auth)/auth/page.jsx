@@ -3,7 +3,10 @@ import AuthTab from '@/components/Auth/AuthTab';
 const AuthPage = () => {
     return (
         <>
-            <AuthTab />
+            <div className="flex justify-center items-center h-screen">
+                <AuthTab />
+            </div>
+
         </>
     );
 };

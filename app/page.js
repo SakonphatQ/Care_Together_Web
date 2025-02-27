@@ -13,16 +13,15 @@ export default function Home() {
         <div className="flex space-x-6">
 
           <div className="bg-blue-100 rounded-lg p-5 w-96">
-            <h2 className="font-bold text-white mb-5 bg-blue-500 w-full rounded-lg">ข้อมูลสุขภาพของฉันล่าสุด</h2>
+            <div className="font-bold text-white text-center mb-5 bg-blue-500 w-full rounded-lg ">ข้อมูลสุขภาพของฉันล่าสุด</div>
             <div className="grid grid-cols-2 gap-y-2">
               <div>
                 <div>ส่วนสูง<div>XXX</div></div>
                 <div>น้ำหนัก<div>XXX</div></div>
-                <div>อายุ <div>XXX</div> </div>
+                <div>ความดันโลหิต<div>XXX</div></div>
               </div>
               <div>
                 <div>IBM<div>XXX</div></div>
-                <div>ความดันโลหิต<div>XXX</div></div>
                 <div>น้ำตาลในเลือด<div>XXX</div></div>
                 <div>แนวโน้มสุขภาพ<div className="text-green-500">ดีขึ้น</div></div>
               </div>
