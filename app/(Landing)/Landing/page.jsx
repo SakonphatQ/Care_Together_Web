@@ -16,14 +16,21 @@ export default function LandingPage() {
                 <Link href='/Landing'>
                     <div className='flex items-center text-blue-800 font-semibold text-xl'><Image src={logo} alt='Logo' width={50} />ดูแลกัน - Care Together</div>
                 </Link>
-                <nav>
-                    <ul className="flex space-x-4">
-                        <li><a href="#" className="text-gray-700">หน้าแรก</a></li>
-                        <li><a href="#" className="text-gray-700">บริการ</a></li>
-                        <li><a href="#" className="text-gray-700">เกี่ยวกับเรา</a></li>
-                        <li><a href="#" className="text-gray-700">ติดต่อเรา</a></li>
-                    </ul>
-                </nav>
+
+                <div className='flex space-x-5 items-center font-semibold'>
+                    <Link href='/about'>
+                        <div className='text-black'>เกี่ยวกับเรา</div>
+                    </Link>
+                    <Link href='/services'>
+                        <div className='text-black'>บริการของเรา</div>
+                    </Link>
+                    <Link href='/HowTO'>
+                        <div className='text-black'>วิธีใช้งาน</div>
+                    </Link>
+                    <Link href='/contact'>
+                        <div className='text-black'>ติดต่อเรา</div>
+                    </Link>
+                </div>
                 <Link href='/auth'>
                     <Button className="bg-blue-500 text-white px-4 py-2 rounded-lg">เข้าสู่ระบบ</Button>
                 </Link>

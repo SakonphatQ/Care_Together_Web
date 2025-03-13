@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import data, { addHealthData } from '@/data/analytics';
 
 const HealthDashboard = () => {
     const [healthData, setHealthData] = useState({
@@ -15,6 +16,10 @@ const HealthDashboard = () => {
     });
 
     const [history, setHistory] = useState([]);
+
+    useEffect(() => {
+        setHistory(data);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,6 +36,7 @@ const HealthDashboard = () => {
             const updatedHistory = [newEntry, ...prevHistory];
             return updatedHistory.slice(0, 5); // Keep only the latest 5 entries
         });
+        addHealthData(newEntry); // ส่งข้อมูลไปยัง analytics.js
     };
 
     return (
@@ -61,6 +67,8 @@ const HealthDashboard = () => {
                 </div>
             </div>
 
+            {/* ประวัติ */}
+            <div className="py-2"/>
             <div className="grid gap-4 w-full h-9 p-2 bg-green-600 rounded-lg font-bold text-white mb-4 text-left">ประวัติ</div>
             <div className="flex flex-wrap space-x-6 col-span-4">
                 {history.map((entry, index) => (
