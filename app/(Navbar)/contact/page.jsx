@@ -3,7 +3,8 @@ import React from 'react';
 const ContactPage = () => {
     return (
         <div style={{ padding: '20px' }}>
-            <div className="font-bold text-black text-center mb-5 bg-blue-200 w-full rounded-lg">
+            <div className="font-bold text-black text-center mb-5 bg-blue-100 w-full rounded-lg h-full">
+                <div className="py-2"/>
                 <h1>Contact Us</h1>
                 <form>
                     
@@ -19,7 +20,8 @@ const ContactPage = () => {
                         <label htmlFor="message">Message:</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" type="submit">Submit</button>
+                    <div className="py-2"/>
                 </form>
             </div>
         </div>

@@ -25,7 +25,7 @@ export default function Home() {
         </div>
         <div className="p-5 w-full md:max-w-[calc(100%-11rem)]">
           <div className="flex space-x-8">
-            <div className="bg-blue-100 rounded-lg p-5 w-96">
+            <div className="bg-blue-100 rounded-lg p-5 w-96 shadow-xl">
               <div className="font-bold text-black text-center mb-5 w-full rounded-lg">ข้อมูลสุขภาพของฉันล่าสุด</div>
               <div className="grid grid-cols-2 gap-y-2 py-3">
                 <div>
@@ -37,18 +37,19 @@ export default function Home() {
                   <div className="py-3">แนวโน้มสุขภาพ</div>
                 </div>
                 <div>
-                <div className="py-3">{latestData.height}</div>
-                <div className="py-3">{latestData.weight}</div>
-                <div className="py-3">{latestData.bloodPressure}</div>
-                <div className="py-3">{latestData.bmi}</div>  
-                <div className="py-3">{latestData.bloodSugar}</div>
-                <div className="text-green-500 py-3">ดีขึ้น</div>
+                  <div className="py-3">{latestData.height}</div>
+                  <div className="py-3">{latestData.weight}</div>
+                  <div className="py-3">{latestData.bloodPressure}</div>
+                  <div className="py-3">{latestData.bmi}</div>
+                  <div className="py-3">{latestData.bloodSugar}</div>
+                  <div className="text-green-500 py-3">ดีขึ้น</div>
                 </div>
               </div>
             </div>
 
-            <div className="px-10 w-1/2 ">
-              <Carousel>
+
+            <div className="px-10 py-2 w-1/2">
+              <Carousel className="w-full h-96">
                 <CarouselContent>
                   <CarouselItem><Image src={Product_advertising1} alt='TraversyPress' width={800} /></CarouselItem>
                   <CarouselItem><Image src={Product_advertising2} alt='TraversyPress' width={800} /></CarouselItem>
@@ -58,20 +59,20 @@ export default function Home() {
                 <CarouselNext />
               </Carousel>
             </div>
-
           </div>
+
 
           <div>
             <div className="grid gap-4 w-full h-9 p-2 bg-green-600 rounded-lg font-bold text-white mb-4 text-left mt-4">แผนการดูแลสุขภาพรายวัน</div>
           </div>
 
           <div className="grid grid-cols-6 gap-4 mt-4">
-            <div className="bg-white shadow rounded-lg p-4 w-60 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-white shadow rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-white shadow rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-white shadow rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-white shadow rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-white shadow rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 w-60 h-80 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-white shadow-xl rounded-lg p-4 mb-8">xxxxxxxxxxxxxxx</div>
           </div>
         </div>
       </div>

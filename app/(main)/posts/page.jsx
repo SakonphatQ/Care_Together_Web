@@ -54,7 +54,7 @@ const HealthDashboard = () => {
                         <input className="p-2 border rounded" placeholder="น้ำตาลในเลือด" name="bloodSugar" value={healthData.bloodSugar} onChange={handleChange} />
                     </div>
 
-                    <Button className="bg-blue-500 text-white mt-2 p-2 rounded" onClick={handleSave}>บันทึก</Button>
+                    <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" onClick={handleSave}>บันทึก</Button>
                 </div>
 
                 {/* คำแนะนำ */}
@@ -62,7 +62,7 @@ const HealthDashboard = () => {
                     <h2 className="text-lg font-bold">คำแนะนำ</h2>
                     <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
                     <Link href={`/Call`}>
-                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded">ติดต่อผู้เชี่ยวชาญ</Button>
+                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
                     </Link>
                 </div>
             </div>

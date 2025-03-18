@@ -5,6 +5,7 @@ const review = () => {
         <>
             <div class="flex justify-center items-center min-h-screen bg-gray-100">
                 <div class="w-[600px]">
+                    {/*กล่องคำแนะนำ*/}
                     <div class="bg-white rounded-lg shadow-md">
                         <div class="bg-blue-600 text-white px-4 py-2 flex justify-between rounded-t-lg">
                             <span>คำแนะนำ</span>
@@ -31,7 +32,7 @@ const review = () => {
                             </pre>
                         </div>
                     </div>
-
+                    {/*ให้คะแนนคำแนะนำ*/}
                     <div class="mt-6 bg-white rounded-lg shadow-md">
                         <div class="bg-blue-600 text-white px-4 py-2 rounded-t-lg">
                             ให้คะแนนคำแนะนำ

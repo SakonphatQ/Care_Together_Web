@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         <div className="flex">
-          <div className="hidden md:block w-44">
+          <div className="hidden md:block w-44 h-screen">
             <Sidebar />
           </div>
           <div className="p-5 w-full md:max-w-[calc(100%-11rem)]">
