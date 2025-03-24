@@ -13,7 +13,7 @@ import {
 
 
 const Navbar = () => {
-    return <div className="bg-primary bg-white text-black py-2 px-5 flex justify-between border-b-2 border-black">
+    return <div className="bg-primary bg-white text-black py-2 px-5 flex justify-between border-b-2">
 
         <Link href='/'>
             <div className='flex items-center text-blue-800 font-semibold text-xl'><Image src={logo} alt='TraversyPress' width={50} />ดูแลกัน - Care Together</div>

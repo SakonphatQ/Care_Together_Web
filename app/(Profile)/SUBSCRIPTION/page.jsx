@@ -19,7 +19,7 @@ const SubscriptionPlan = () => {
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`p-4 w-40 border rounded-lg text-center cursor-pointer shadow-md ${
+            className={`p-4 w-60 h-30 border rounded-lg text-center cursor-pointer shadow-md ${
               selectedPlan === plan.name
                 ? "bg-gradient-to-b from-blue-500 to-blue-700 text-white"
                 : "bg-white text-black"
@@ -28,20 +28,24 @@ const SubscriptionPlan = () => {
           >
             <h3 className="font-bold">{plan.name}</h3>
             <p className="text-lg">{plan.price}</p>
-            <p className="text-sm">xxxxxxxxxxxxx</p>
+            {plan.name === "1 เดือน" && (
+              <p className="text-sm">เดือนละ 52 บาท</p>
+            )}
+            {plan.name === "1 ปี" && (
+              <p className="text-sm">เฉลี่ยเดือนละ 37.5 บาท</p>
+            )}
           </div>
         ))}
       </div>
-
       {/* สิทธิประโยชน์ */}
       <div className="mt-6 w-full max-w-md p-4 border rounded-lg shadow">
         <h3 className="font-bold">สิทธิประโยชน์</h3>
         <p className="text-sm mt-2">
-          xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          - เข้าถึงเนื้อหาพิเศษ {/* ตัวอย่าง */}
           <br />
-          xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          - ส่วนลดพิเศษสำหรับกิจกรรม {/* ตัวอย่าง */}
           <br />
-          xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          - การสนับสนุนลูกค้าแบบพิเศษ {/* ตัวอย่าง */}
         </p>
       </div>
     </div>

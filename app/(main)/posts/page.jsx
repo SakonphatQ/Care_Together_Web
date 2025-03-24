@@ -43,36 +43,44 @@ const HealthDashboard = () => {
         <>
             <div className="flex space-x-6">
                 {/* กรอกข้อมูลสุขภาพ */}
-                <div className="bg-blue-100 text-black p-4 rounded-lg shadow-md w-96 h-72">
-                    <h2 className="text-lg font-bold">กรอกข้อมูลสุขภาพของฉัน</h2>
-                    <div className="grid grid-cols-2 gap-4 text-black p-3">
-                        <input className="p-2 border rounded" placeholder="ส่วนสูง" name="height" value={healthData.height} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="น้ำหนัก" name="weight" value={healthData.weight} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="อายุ" name="age" value={healthData.age} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="BMI" name="bmi" value={healthData.bmi} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="ความดันโลหิต" name="bloodPressure" value={healthData.bloodPressure} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="น้ำตาลในเลือด" name="bloodSugar" value={healthData.bloodSugar} onChange={handleChange} />
+                                <div className="bg-blue-100 rounded-lg shadow-md w-96 h-72">
+                                    <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">กรอกข้อมูลสุขภาพของฉัน</h2>
+                                    <div className="grid grid-cols-2 gap-4 text-black px-4 py-4">
+                                        <input className="p-2 border rounded" placeholder="ส่วนสูง" name="height" value={healthData.height} onChange={handleChange} />
+                                        <input className="p-2 border rounded" placeholder="น้ำหนัก" name="weight" value={healthData.weight} onChange={handleChange} />
+                                        <input className="p-2 border rounded" placeholder="อายุ" name="age" value={healthData.age} onChange={handleChange} />
+                                        <input className="p-2 border rounded" placeholder="BMI" name="bmi" value={healthData.bmi} onChange={handleChange} />
+                                        {/*<div className="text-center mt-4">
+                                            {healthData.height && healthData.weight && (
+                                                <p>BMI ที่คำนวนได้: {((healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2))}</p>
+                                            )}
+                                        </div>*/}
+                                        <input className="p-2 border rounded" placeholder="ความดันโลหิต" name="bloodPressure" value={healthData.bloodPressure} onChange={handleChange} />
+                                        <input className="p-2 border rounded" placeholder="น้ำตาลในเลือด" name="bloodSugar" value={healthData.bloodSugar} onChange={handleChange} />
+
+                                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" onClick={handleSave}>บันทึก</Button>
+                                    </div>
+                                </div>
+
+                                {/* คำแนะนำ */}
+                <div className="bg-blue-100 rounded-lg shadow-md w-full h-72">
+                    <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">คำแนะนำ</h2>
+                    <div className="text-black px-4">
+                        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+
+                        <Link href={`/Call`}>
+                            <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
+                        </Link>
                     </div>
-
-                    <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" onClick={handleSave}>บันทึก</Button>
-                </div>
-
-                {/* คำแนะนำ */}
-                <div className="bg-blue-100 text-black p-4 rounded-lg shadow-md w-full">
-                    <h2 className="text-lg font-bold">คำแนะนำ</h2>
-                    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                    <Link href={`/Call`}>
-                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
-                    </Link>
                 </div>
             </div>
 
             {/* ประวัติ */}
-            <div className="py-2"/>
-            <div className="grid gap-4 w-full h-9 p-2 bg-green-600 rounded-lg font-bold text-white mb-4 text-left">ประวัติ</div>
+            <div className="py-2" />
+            <div className="grid gap-4 w-full p-4 mb-4 bg-green-600 rounded-lg font-bold text-white shadow-md">ประวัติ</div>
             <div className="flex flex-wrap space-x-6 col-span-4">
                 {history.map((entry, index) => (
-                    <div key={index} className="bg-white text-black p-4 mt-4 rounded-lg shadow-md w-56">
+                    <div key={index} className="bg-white text-black p-4 mt-4 rounded-lg shadow-md w-60">
                         <div className="text-center">วันที่: {entry.date}</div>
                         <div className="text-center mt-2">ส่วนสูง: {entry.height} cm</div>
                         <div className="text-center mt-2">น้ำหนัก: {entry.weight} Kg</div>
@@ -83,9 +91,9 @@ const HealthDashboard = () => {
                     </div>
                 ))}
             </div>
-            <div className="">
+            <div className="py-4">
                 {/* คำแนะนำเพิ่มเติม */}
-                <div className="bg-blue-500 text-white p-4 mt-4 rounded-lg shadow-md">
+                <div className="w-full p-4 mb-4 bg-blue-500 rounded-lg font-bold text-white text-left shadow-md">
                     <h2 className="text-lg font-bold">ประวัติคำแนะนำ</h2>
                 </div>
                 <div className="bg-white text-black p-4 mt-4 rounded-lg shadow-md">
