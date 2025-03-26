@@ -1,6 +1,9 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import data from "@/data/analytics";
+import { getHealthData } from "@/data/analytics";
 import Product_advertising1 from '@/img/Product_advertising1.jpg';
 import Product_advertising2 from '@/img/Product_advertising2.jpg';
 import Image from 'next/image';
@@ -12,7 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-{/* ฟังก์ชันที่ใช้ในการวิเคราะห์สุขภาพ*/}
+{/* ฟังก์ชันที่ใช้ในการวิเคราะห์สุขภาพ*/ }
 const analyzeHealth = (latestData) => {
   let healthTrend = "ปกติ";
   let healthColor = "text-green-500";
@@ -30,7 +33,21 @@ const analyzeHealth = (latestData) => {
 };
 
 export default function Home() {
-  const latestData = data[0];
+  const [latestData, setLatestData] = useState(null);
+
+  useEffect(() => {
+    // โหลดข้อมูลจาก Local Storage
+    const savedHistory = localStorage.getItem('healthHistory');
+    if (savedHistory) {
+      const history = JSON.parse(savedHistory);
+      setLatestData(history[0]); // ดึงข้อมูลล่าสุด
+    }
+  }, []);
+
+  if (!latestData) {
+    return <div>Loading...</div>;
+  }
+
   const { healthTrend, healthColor } = analyzeHealth(latestData);
 
   return (
@@ -80,7 +97,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/*แผนการดูแลสุขภาพรายวัน*/}     
+          {/*แผนการดูแลสุขภาพรายวัน*/}
           <div>
             <div className="grid gap-4 w-full h-9 p-2 bg-green-600 rounded-lg font-bold text-white mb-4 text-left mt-4">แผนการดูแลสุขภาพรายวัน</div>
           </div>

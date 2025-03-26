@@ -73,4 +73,8 @@ export const addHealthData = (newEntry) => {
     data = [newEntry, ...data].slice(0, 5); // เก็บข้อมูลได้สูงสุด 5 รายการ
 };
 
+export const getHealthData = () => {
+    return data;
+};
+
 export default data;
