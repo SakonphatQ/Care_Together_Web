@@ -103,12 +103,34 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-6 gap-4 mt-4">
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
-            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">xxxxxxxxxxxxxxx</div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">ออกกำลังกาย</h3>
+              <p>เดินเร็ว 30 นาที</p>
+              <p>โยคะ 15 นาที</p>
+            </div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">โภชนาการ</h3>
+              <p>รับประทานผักและผลไม้</p>
+              <p>หลีกเลี่ยงอาหารทอด</p>
+            </div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">การดื่มน้ำ</h3>
+              <p>ดื่มน้ำอย่างน้อย 8 แก้ว</p>
+            </div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">การพักผ่อน</h3>
+              <p>นอนหลับอย่างน้อย 7 ชั่วโมง</p>
+            </div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">การจัดการความเครียด</h3>
+              <p>ฝึกสมาธิ 10 นาที</p>
+              <p>ฟังเพลงผ่อนคลาย</p>
+            </div>
+            <div className="bg-blue-100 shadow-xl rounded-lg p-4 h-80 mb-8">
+              <h3 className="font-bold mb-2">การตรวจสุขภาพ</h3>
+              <p>วัดความดันโลหิต</p>
+              <p>ตรวจน้ำตาลในเลือด</p>
+            </div>
           </div>
         </div>
       </div>

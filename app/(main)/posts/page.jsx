@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import data, { addHealthData } from '@/data/analytics';
+import { addRecommendation, getRecommendations, updateRecommendationRating } from '@/data/Histroly';
+
 
 const HealthDashboard = () => {
     const [healthData, setHealthData] = useState({
@@ -16,6 +18,8 @@ const HealthDashboard = () => {
     });
 
     const [history, setHistory] = useState([]);
+    const [advice, setAdvice] = useState(''); // สถานะสำหรับคำแนะนำ
+
 
     useEffect(() => {
         // โหลดข้อมูลจาก Local Storage
@@ -26,6 +30,13 @@ const HealthDashboard = () => {
             setHistory(data); // ดึงข้อมูลเริ่มต้นจาก analytics.js
         }
     }, []);
+
+
+    const handleRating = (timestamp, rating) => {
+        updateRecommendationRating('user123', timestamp, rating); // อัปเดตคะแนนใน Histroly.js
+        const updatedRecommendations = getRecommendations('user123', 7); // ดึงข้อมูลที่อัปเดต
+        setAdviceHistory(updatedRecommendations); // อัปเดตสถานะคำแนะนำ
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,7 +54,39 @@ const HealthDashboard = () => {
 
         // บันทึกข้อมูลลง Local Storage
         localStorage.setItem('healthHistory', JSON.stringify(updatedHistory));
+
+        // อัปเดตคำแนะนำ
+        const adviceMessage = generateAdvice(newEntry);
+        setAdvice(adviceMessage);
+
+        // บันทึกคำแนะนำใน Histroly.js
+        addRecommendation('user123', adviceMessage); // ใช้ userId ที่เหมาะสม
     };
+
+
+    const generateAdvice = (data) => {
+        let adviceMessage = 'สุขภาพของคุณอยู่ในเกณฑ์ปกติ';
+
+        if (data.bmi > 25) {
+            adviceMessage = 'คุณควรควบคุมน้ำหนักและออกกำลังกายอย่างสม่ำเสมอ';
+        }
+        if (data.bloodPressure > 140) {
+            adviceMessage = 'คุณควรลดการบริโภคเกลือและพบแพทย์เพื่อตรวจสุขภาพ';
+        }
+        if (data.bloodSugar > 100) {
+            adviceMessage = 'คุณควรลดการบริโภคน้ำตาลและอาหารที่มีคาร์โบไฮเดรตสูง';
+        }
+
+        return adviceMessage;
+    };
+
+    useEffect(() => {
+        // โหลดคำแนะนำจาก Histroly.js
+        const recommendations = getRecommendations('user123', 7); // ดึงคำแนะนำ 7 รายการล่าสุด
+        setAdviceHistory(recommendations);
+    }, []);
+
+    const [adviceHistory, setAdviceHistory] = useState([]);
 
     return (
         <>
@@ -72,14 +115,16 @@ const HealthDashboard = () => {
                 <div className="bg-blue-100 rounded-lg shadow-md w-full h-72">
                     <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">คำแนะนำ</h2>
                     <div className="text-black px-4">
-                        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-
+                        <p>{advice}</p> {/* แสดงคำแนะนำ */}
                         <Link href={`/Call`}>
                             <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
                         </Link>
                     </div>
                 </div>
             </div>
+
+
+
 
             {/* ประวัติ */}
             <div className="py-2" />
@@ -97,17 +142,26 @@ const HealthDashboard = () => {
                     </div>
                 ))}
             </div>
-            <div className="py-4">
-                {/* คำแนะนำเพิ่มเติม */}
-                <div className="w-full p-4 mb-4 bg-blue-500 rounded-lg font-bold text-white text-left shadow-md">
-                    <h2 className="text-lg font-bold">ประวัติคำแนะนำ</h2>
-                </div>
-                <div className="bg-white text-black p-4 mt-4 rounded-lg shadow-md">
-                    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                    <Link href={`/posts/review`}>
-                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded">ให้คะแนน</Button>
-                    </Link>
-                </div>
+
+            {/* คำแนะนำเพิ่มเติม */}
+            <div className="py-2" />
+            <div className="w-full p-4 mb-4 bg-blue-500 rounded-lg font-bold text-white text-left shadow-md">
+                <h2 className="text-lg font-bold">ประวัติคำแนะนำ</h2>
+            </div>
+            <div className="bg-white text-black p-4 mt-4 rounded-lg shadow-md">
+                {adviceHistory.map((entry, index) => (
+                    <div key={index} className="mb-4">
+                        <p><strong>วันที่:</strong> {new Date(entry.timestamp).toLocaleDateString()}</p>
+                        <p><strong>คำแนะนำ:</strong> {entry.recommendation}</p>
+                        <div className="flex space-x-4 mt-2">
+                            <Link href={`/posts/review?page=${entry.timestamp}`}>
+                                <Button className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md">
+                                    ให้คะแนนคำแนะนำ
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
             </div>
         </>
     );
