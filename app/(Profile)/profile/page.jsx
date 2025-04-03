@@ -4,12 +4,17 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const UserProfile = () => {
     return (
-        <div className="flex flex-col items-center justify-center mt-24">
+        <div className="flex flex-col items-center ">{/*rounded-lg shadow-lg bg-blue-100*/}
+            {/* ชื่อผู้ใช้ */}   
+            <h1 className="text-3xl font-bold text-center mt-10">ชื่อผู้ใช้</h1>
+            <div className="py-4"/>
             {/* รูปโปรไฟล์ */}
-            <Avatar>
-                <AvatarImage src='https://github.com/shacn.png' alt='@shadcn' />
-                <avatarFallback className='text-black'>BT</avatarFallback>
-            </Avatar>
+            <div className="w-32 h-32">
+                <Avatar className="w-full h-full">
+                    <AvatarImage src='https://github.com/shacn.png' alt='@shadcn' />
+                    <AvatarFallback className='text-black'>BT</AvatarFallback>
+                </Avatar>
+            </div>
 
             {/* ปุ่มต่าง ๆ */}
             <div className="mt-20 flex flex-col gap-3">

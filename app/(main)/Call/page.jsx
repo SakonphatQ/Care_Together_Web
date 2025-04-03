@@ -24,9 +24,33 @@ const ChatComponent = () => {
 
     setInput(""); // ล้างช่องป้อนข้อความ
   };
+  
+  // เพิ่มสไตล์พื้นหลังและการจัดวาง
+  const containerStyle = {
+    backgroundImage: "linear-gradient(to bottom, #a8edea, #fed6e3)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    padding: "20px",
+  };
 
+  const chatBoxStyle = {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    borderRadius: "15px",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    maxWidth: "600px",
+    height: "80vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: "20px",
+    overflow: "hidden",
+  };
   return (
-    <div className="flex flex-col justify-between p-4 bg-gray-100 h-screen rounded-lg shadow-md">
+    <div className="flex flex-col justify-between p-4 h-screen ">{/*bg-blue-100  rounded-lg shadow-md*/}
       {/* แสดงข้อความ */}
       <div className="flex flex-col space-y-4 h-full overflow-y-auto flex-grow">
         {messages.map((message, index) => (
@@ -51,27 +75,21 @@ const ChatComponent = () => {
       </div>
 
       {/* ช่องป้อนข้อความ */}
-      <form
-        className="flex items-center border border-gray-300 p-2 rounded-lg w-full mt-4"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSend();
-        }}
-      >
+      <div className="flex items-center border border-gray-300 p-3 rounded-lg w-full mt-4">
         <input
           type="text"
-          className="flex-grow outline-none"
+          className="flex-grow outline-none text-lg p-2"
           placeholder="พิมพ์ข้อความ..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <button
-          type="submit"
-          className="text-gray-500 hover:text-black ml-2"
+          onClick={handleSend}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-3 hover:bg-blue-600"
         >
-          ▶️
+          ส่ง
         </button>
-      </form>
+      </div>
     </div>
   );
 };
