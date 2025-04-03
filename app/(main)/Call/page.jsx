@@ -26,9 +26,9 @@ const ChatComponent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between p-4 bg-gray-100 h-screen">
+    <div className="flex flex-col justify-between p-4 bg-gray-100 h-screen rounded-lg shadow-md">
       {/* แสดงข้อความ */}
-      <div className="flex flex-col space-y-4 overflow-y-auto flex-grow">
+      <div className="flex flex-col space-y-4 h-full overflow-y-auto flex-grow">
         {messages.map((message, index) => (
           <div
             key={index}

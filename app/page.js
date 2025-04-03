@@ -84,7 +84,8 @@ export default function Home() {
             </div>
 
             {/*โฆษณา*/}
-            <div className="px-10 py-2 w-1/2 h-96">
+            <div className="px-10 "/>
+            <div className="px-10 py-2 w-1/2 h-96 items-center ">
               <Carousel className="">
                 <CarouselContent>
                   <CarouselItem><Image src={Product_advertising1} alt='TraversyPress' width={800} /></CarouselItem>
