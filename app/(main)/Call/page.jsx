@@ -50,7 +50,7 @@ const ChatComponent = () => {
     overflow: "hidden",
   };
   return (
-    <div className="flex flex-col justify-between p-4 h-screen ">{/*bg-blue-100  rounded-lg shadow-md*/}
+    <div className="flex flex-col justify-between p-4 h-screen bg-gray-200 rounded-lg shadow-md">{/*bg-blue-100  */}
       {/* แสดงข้อความ */}
       <div className="flex flex-col space-y-4 h-full overflow-y-auto flex-grow">
         {messages.map((message, index) => (
