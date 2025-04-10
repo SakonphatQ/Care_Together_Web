@@ -21,7 +21,7 @@ import {
 import Link from 'next/link';
 
 const Sidebar = () => {
-  return <Command className='bg-secondary bg-white rounded-none border-gray-100 border-2 shadow-md h-screen'>
+  return <Command className='bg-secondary bg-white rounded-none border-gray-100'> {/* border-2 shadow-md h-screen */}
     <CommandList>
       <CommandEmpty>No results found.</CommandEmpty>
       <CommandItem>

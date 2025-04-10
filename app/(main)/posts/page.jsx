@@ -97,22 +97,39 @@ const HealthDashboard = () => {
                     <div className="grid grid-cols-2 gap-4 text-black px-4 py-4">
                         <input className="p-2 border rounded" placeholder="ส่วนสูง" name="height" value={healthData.height} onChange={handleChange} />
                         <input className="p-2 border rounded" placeholder="น้ำหนัก" name="weight" value={healthData.weight} onChange={handleChange} />
+                        <div className="p-2 border rounded bg-white">
+                            {healthData.height && healthData.weight && (
+                                <p>BMI: {((healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2))}</p>
+                            )}
+                        </div>
                         <input className="p-2 border rounded" placeholder="อายุ" name="age" value={healthData.age} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="BMI" name="bmi" value={healthData.bmi} onChange={handleChange} />
-                        {/*<div className="text-center mt-4">
-                                            {healthData.height && healthData.weight && (
-                                                <p>BMI ที่คำนวนได้: {((healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2))}</p>
-                                            )}
-                                        </div>*/}
                         <input className="p-2 border rounded" placeholder="ความดันโลหิต" name="bloodPressure" value={healthData.bloodPressure} onChange={handleChange} />
                         <input className="p-2 border rounded" placeholder="น้ำตาลในเลือด" name="bloodSugar" value={healthData.bloodSugar} onChange={handleChange} />
-
-                        <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" onClick={handleSave}>บันทึก</Button>
+                        <Button
+                            className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl"
+                            onClick={() => {
+                                const calculatedBmi = (healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2);
+                                const updatedHealthData = {
+                                    ...healthData,
+                                    bmi: calculatedBmi,
+                                };
+                                setHealthData(updatedHealthData);
+                                addHealthData(updatedHealthData); // ส่งข้อมูล BMI เข้า data
+                                handleSave();
+                            }}
+                        >
+                            บันทึก
+                        </Button>
+                        {advice && (
+                            <div className="text-green-600 font-bold p-2">
+                                บันทึกข้อมูลสำเร็จ!
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 {/* คำแนะนำ */}
-                <div className="bg-blue-100 rounded-lg shadow-md w-full h-72">
+                < div className="bg-blue-100 rounded-lg shadow-md w-full h-72" >
                     <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">คำแนะนำ</h2>
                     <div className="text-black px-4">
                         <p>{advice}</p> {/* แสดงคำแนะนำ */}
@@ -120,14 +137,14 @@ const HealthDashboard = () => {
                             <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
                         </Link>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
 
 
 
             {/* ประวัติ */}
-            <div className="py-2" />
+            < div className="py-2" />
             <div className="grid gap-4 w-full p-4 mb-4 bg-green-600 rounded-lg font-bold text-white shadow-md">ประวัติ</div>
             <div className="flex flex-wrap space-x-6 col-span-4">
                 {history.map((entry, index) => (
@@ -148,7 +165,7 @@ const HealthDashboard = () => {
             <div className="w-full p-4 mb-4 bg-blue-500 rounded-lg font-bold text-white text-left shadow-md">
                 <h2 className="text-lg font-bold">ประวัติคำแนะนำ</h2>
             </div>
-            <div className="bg-white text-black p-4 mt-4 rounded-lg shadow-md">
+            <div className="bg-blue-100 text-black p-4 mt-4 rounded-lg shadow-md">
                 {adviceHistory.map((entry, index) => (
                     <div key={index} className="mb-4">
                         <p><strong>วันที่:</strong> {new Date(entry.timestamp).toLocaleDateString()}</p>
