@@ -70,11 +70,26 @@ const HealthDashboard = () => {
         if (data.bmi > 25) {
             adviceMessage = 'คุณควรควบคุมน้ำหนักและออกกำลังกายอย่างสม่ำเสมอ';
         }
+        if (data.bmi < 18.5) {
+            adviceMessage = 'คุณควรเพิ่มน้ำหนักด้วยการรับประทานอาหารที่มีประโยชน์';
+        }
         if (data.bloodPressure > 140) {
             adviceMessage = 'คุณควรลดการบริโภคเกลือและพบแพทย์เพื่อตรวจสุขภาพ';
         }
+        if (data.bloodPressure < 90) {
+            adviceMessage = 'ความดันโลหิตของคุณต่ำเกินไป ควรปรึกษาแพทย์';
+        }
         if (data.bloodSugar > 100) {
             adviceMessage = 'คุณควรลดการบริโภคน้ำตาลและอาหารที่มีคาร์โบไฮเดรตสูง';
+        }
+        if (data.bloodSugar < 70) {
+            adviceMessage = 'น้ำตาลในเลือดของคุณต่ำเกินไป ควรรับประทานอาหารหรือเครื่องดื่มที่มีน้ำตาล';
+        }
+        if (data.age > 60) {
+            adviceMessage = 'คุณควรตรวจสุขภาพประจำปีและดูแลสุขภาพอย่างใกล้ชิด';
+        }
+        if (data.age < 18) {
+            adviceMessage = 'ควรรับประทานอาหารที่มีประโยชน์และออกกำลังกายเพื่อการเจริญเติบโต';
         }
 
         return adviceMessage;
@@ -95,11 +110,39 @@ const HealthDashboard = () => {
                 <div className="bg-blue-100 rounded-lg shadow-md w-96 h-72">
                     <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">กรอกข้อมูลสุขภาพของฉัน</h2>
                     <div className="grid grid-cols-2 gap-4 text-black px-4 py-4">
-                        <input className="p-2 border rounded" placeholder="ส่วนสูง" name="height" value={healthData.height} onChange={handleChange} />
-                        <input className="p-2 border rounded" placeholder="น้ำหนัก" name="weight" value={healthData.weight} onChange={handleChange} />
+                        <input
+                            className="p-2 border rounded"
+                            placeholder="ส่วนสูง"
+                            name="height"
+                            value={healthData.height}
+                            onChange={(e) => {
+                                handleChange(e);
+                                if (healthData.weight) {
+                                    const calculatedBmi = (e.target.value && healthData.weight)
+                                        ? (healthData.weight / ((e.target.value / 100) ** 2)).toFixed(2)
+                                        : '';
+                                    setHealthData((prev) => ({ ...prev, bmi: calculatedBmi }));
+                                }
+                            }}
+                        />
+                        <input
+                            className="p-2 border rounded"
+                            placeholder="น้ำหนัก"
+                            name="weight"
+                            value={healthData.weight}
+                            onChange={(e) => {
+                                handleChange(e);
+                                if (healthData.height) {
+                                    const calculatedBmi = (healthData.height && e.target.value)
+                                        ? (e.target.value / ((healthData.height / 100) ** 2)).toFixed(2)
+                                        : '';
+                                    setHealthData((prev) => ({ ...prev, bmi: calculatedBmi }));
+                                }
+                            }}
+                        />
                         <div className="p-2 border rounded bg-white">
-                            {healthData.height && healthData.weight && (
-                                <p>BMI: {((healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2))}</p>
+                            {healthData.bmi && (
+                                <p>BMI: {healthData.bmi}</p>
                             )}
                         </div>
                         <input className="p-2 border rounded" placeholder="อายุ" name="age" value={healthData.age} onChange={handleChange} />
@@ -108,13 +151,7 @@ const HealthDashboard = () => {
                         <Button
                             className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl"
                             onClick={() => {
-                                const calculatedBmi = (healthData.weight / ((healthData.height / 100) ** 2)).toFixed(2);
-                                const updatedHealthData = {
-                                    ...healthData,
-                                    bmi: calculatedBmi,
-                                };
-                                setHealthData(updatedHealthData);
-                                addHealthData(updatedHealthData); // ส่งข้อมูล BMI เข้า data
+                                addHealthData(healthData); // ส่งข้อมูล BMI เข้า data
                                 handleSave();
                             }}
                         >
@@ -129,19 +166,24 @@ const HealthDashboard = () => {
                 </div>
 
                 {/* คำแนะนำ */}
-                < div className="bg-blue-100 rounded-lg shadow-md w-full h-72" >
+
+                <div className="bg-blue-100 rounded-lg shadow-md w-full h-72 flex flex-col justify-between">
                     <h2 className="bg-blue-600 text-white px-4 py-2 flex justify-center rounded-t-lg">คำแนะนำ</h2>
-                    <div className="text-black px-4">
-                        <p>{advice}</p> {/* แสดงคำแนะนำ */}
+                    <div className="text-black px-4 py-4 flex-grow overflow-y-auto">
+                        {advice ? (
+                            <p className="text-lg font-semibold">{advice}</p> // แสดงคำแนะนำ
+                        ) : (
+                            <p className="text-gray-500">ยังไม่มีคำแนะนำในขณะนี้</p>
+                        )}
+                    </div>
+                    <div className="px-4 pb-4">
                         <Link href={`/Call`}>
-                            <Button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
+                            <Button className="bg-blue-500 text-white w-full py-2 rounded shadow-xl">ติดต่อผู้เชี่ยวชาญ</Button>
                         </Link>
                     </div>
-                </div >
-            </div >
+                </div>
 
-
-
+            </div>
 
             {/* ประวัติ */}
             < div className="py-2" />

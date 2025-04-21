@@ -24,7 +24,7 @@ const ChatComponent = () => {
 
     setInput(""); // ล้างช่องป้อนข้อความ
   };
-  
+
   // เพิ่มสไตล์พื้นหลังและการจัดวาง
   const containerStyle = {
     backgroundImage: "linear-gradient(to bottom, #a8edea, #fed6e3)",
@@ -50,9 +50,9 @@ const ChatComponent = () => {
     overflow: "hidden",
   };
   return (
-    <div className="flex flex-col justify-between p-4 h-screen bg-gray-200 rounded-lg shadow-md">{/*bg-blue-100  */}
+    <div className="flex flex-col justify-between p-4 h-screen bg-gradient-to-b from-blue-100 to-pink-100 rounded-lg shadow-lg">
       {/* แสดงข้อความ */}
-      <div className="flex flex-col space-y-4 h-full overflow-y-auto flex-grow">
+      <div className="flex flex-col space-y-4 h-full overflow-y-auto flex-grow p-4 bg-white rounded-lg shadow-inner">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -60,12 +60,12 @@ const ChatComponent = () => {
               }`}
           >
             {message.sender === "bot" && (
-              <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center">
+              <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
                 🤖
               </div>
             )}
             <div
-              className={`bg-white border border-gray-300 p-3 rounded-lg shadow-md w-fit max-w-md ${message.sender === "bot" ? "ml-2" : "self-end"
+              className={`bg-gray-100 border border-gray-200 p-3 rounded-lg shadow-md w-fit max-w-md ${message.sender === "bot" ? "ml-2" : "self-end"
                 }`}
             >
               {message.text}
@@ -73,19 +73,18 @@ const ChatComponent = () => {
           </div>
         ))}
       </div>
-
       {/* ช่องป้อนข้อความ */}
-      <div className="flex items-center border border-gray-300 p-3 rounded-lg w-full mt-4">
+      <div className="flex items-center border border-gray-300 p-3 rounded-lg w-full mt-4 bg-white shadow-md">
         <input
           type="text"
-          className="flex-grow outline-none text-lg p-2"
+          className="flex-grow outline-none text-lg p-2 bg-transparent"
           placeholder="พิมพ์ข้อความ..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <button
           onClick={handleSend}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-3 hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-3 hover:bg-blue-600 shadow-md"
         >
           ส่ง
         </button>

@@ -96,6 +96,7 @@ export default function Home() {
                 <CarouselNext />
               </Carousel>
             </div>
+            
           </div>
 
           {/*แผนการดูแลสุขภาพรายวัน*/}
