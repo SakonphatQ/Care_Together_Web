@@ -4,29 +4,6 @@ const ContactPage = () => {
     return (
         <div style={{ padding: '20px' }}>
 
-            {/* CONTACT FORM
-            <div className="w-full md:w-96 md:max-w-full mx-auto">
-                <div className="py-2" />
-                <h1>Contact Us</h1>
-                <form>
-
-                    <div style={{ marginBottom: '10px' }}>
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" name="name" required />
-                    </div>
-                    <div style={{ marginBottom: '10px' }}>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" required />
-                    </div>
-                    <div style={{ marginBottom: '10px' }}>
-                        <label htmlFor="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button className="bg-blue-500 text-white mt-2 p-2 rounded shadow-xl" type="submit">Submit</button>
-                    <div className="py-2" />
-                </form
-            </div>*/}
-
             {/* BUG REPORT */}
 
             <div class="card bg-white max-w-md p-10 md:rounded-lg my-8 w-full mx-auto">
