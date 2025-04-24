@@ -3,6 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 
 const UserProfile = () => {
+    // ฟังก์ชันหลักสำหรับแสดงหน้าโปรไฟล์ผู้ใช้
     return (
         <div className="flex flex-col items-center space-y-8 bg-gray-100 min-h-screen py-10">
             {/* ชื่อผู้ใช้ */}

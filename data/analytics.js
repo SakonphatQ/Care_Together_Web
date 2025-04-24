@@ -16,7 +16,7 @@ const calculateBMI = (height, weight) => {
 };
 
 let data = [
-    {
+    {/*{
         name: 'Jan',
         height: 175.00.toFixed(2),
         weight: 109.00.toFixed(2),
@@ -65,7 +65,7 @@ let data = [
         bloodPressure: 144.00.toFixed(2),
         bloodSugar: 95.00.toFixed(2),
         date: '05/01/2025',
-    },
+    },*/}
     // เพิ่มข้อมูลเพิ่มเติมตามต้องการ
 ];
 

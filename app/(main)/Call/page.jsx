@@ -3,15 +3,18 @@
 import { useState } from "react";
 
 const ChatComponent = () => {
+  // สถานะสำหรับเก็บข้อความในแชท
   const [messages, setMessages] = useState([
     { sender: "bot", text: "สวัสดี! ฉันสามารถช่วยอะไรคุณได้บ้าง?" },
   ]);
+  // สถานะสำหรับเก็บข้อความที่ผู้ใช้พิมพ์
   const [input, setInput] = useState("");
 
+  // ฟังก์ชันสำหรับส่งข้อความ
   const handleSend = () => {
-    if (input.trim() === "") return;
+    if (input.trim() === "") return; // ถ้าข้อความว่างเปล่า ให้หยุดการทำงาน
 
-    // เพิ่มข้อความของผู้ใช้
+    // เพิ่มข้อความของผู้ใช้ลงในสถานะ messages
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
 
     // เพิ่มข้อความตอบกลับจากบอท (ตัวอย่าง)
@@ -20,12 +23,12 @@ const ChatComponent = () => {
         ...prev,
         { sender: "bot", text: "ขอบคุณสำหรับข้อความของคุณ!" },
       ]);
-    }, 1000);
+    }, 1000); // ตั้งเวลาให้บอทตอบกลับหลังจาก 1 วินาที
 
     setInput(""); // ล้างช่องป้อนข้อความ
   };
 
-  // เพิ่มสไตล์พื้นหลังและการจัดวาง
+  // สไตล์พื้นหลังและการจัดวางของคอนเทนเนอร์
   const containerStyle = {
     backgroundImage: "linear-gradient(to bottom, #a8edea, #fed6e3)",
     display: "flex",
@@ -36,6 +39,7 @@ const ChatComponent = () => {
     padding: "20px",
   };
 
+  // สไตล์ของกล่องแชท
   const chatBoxStyle = {
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: "15px",
@@ -49,6 +53,7 @@ const ChatComponent = () => {
     padding: "20px",
     overflow: "hidden",
   };
+
   return (
     <div className="flex flex-col justify-between p-4 h-screen bg-gradient-to-b from-blue-100 to-pink-100 rounded-lg shadow-lg">
       {/* แสดงข้อความ */}
@@ -56,8 +61,9 @@ const ChatComponent = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`flex ${message.sender === "bot" ? "items-start" : "justify-end"
-              }`}
+            className={`flex ${
+              message.sender === "bot" ? "items-start" : "justify-end"
+            }`}
           >
             {message.sender === "bot" && (
               <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
@@ -65,8 +71,9 @@ const ChatComponent = () => {
               </div>
             )}
             <div
-              className={`bg-gray-100 border border-gray-200 p-3 rounded-lg shadow-md w-fit max-w-md ${message.sender === "bot" ? "ml-2" : "self-end"
-                }`}
+              className={`bg-gray-100 border border-gray-200 p-3 rounded-lg shadow-md w-fit max-w-md ${
+                message.sender === "bot" ? "ml-2" : "self-end"
+              }`}
             >
               {message.text}
             </div>
@@ -80,10 +87,10 @@ const ChatComponent = () => {
           className="flex-grow outline-none text-lg p-2 bg-transparent"
           placeholder="พิมพ์ข้อความ..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)} // อัปเดตข้อความที่ผู้ใช้พิมพ์
         />
         <button
-          onClick={handleSend}
+          onClick={handleSend} // เรียกฟังก์ชัน handleSend เมื่อกดปุ่ม
           className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-3 hover:bg-blue-600 shadow-md"
         >
           ส่ง

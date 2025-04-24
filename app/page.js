@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // ใช้ useRouter สำหรับการเปลี่ยนเส้นทาง
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { getHealthData } from "@/data/analytics";
 import Product_advertising1 from '@/img/Product_advertising1.jpg';
 import Product_advertising2 from '@/img/Product_advertising2.jpg';
 import Image from 'next/image';
@@ -13,9 +13,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
-{/* ฟังก์ชันที่ใช้ในการวิเคราะห์สุขภาพ*/ }
 const analyzeHealth = (latestData) => {
   let healthTrend = "ปกติ";
   let healthColor = "text-green-500";
@@ -34,15 +33,33 @@ const analyzeHealth = (latestData) => {
 
 export default function Home() {
   const [latestData, setLatestData] = useState(null);
+  const router = useRouter(); // ใช้สำหรับเปลี่ยนเส้นทาง
 
   useEffect(() => {
-    // โหลดข้อมูลจาก Local Storage
-    const savedHistory = localStorage.getItem('healthHistory');
-    if (savedHistory) {
-      const history = JSON.parse(savedHistory);
-      setLatestData(history[0]); // ดึงข้อมูลล่าสุด
+    // ตรวจสอบว่าผู้ใช้เข้ามาครั้งแรกหรือไม่
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+    if (!isFirstVisit) {
+      // ถ้าเข้ามาครั้งแรก ให้บันทึกสถานะใน localStorage และเปลี่ยนเส้นทาง
+      localStorage.setItem('isFirstVisit', 'false');
+      router.push('/Landing'); // เปลี่ยนเส้นทางไปยังหน้า /posts
+    } else {
+      // โหลดข้อมูลจาก Local Storage
+      const savedHistory = localStorage.getItem('healthHistory');
+      if (savedHistory) {
+        const history = JSON.parse(savedHistory);
+        setLatestData(history[0]); // ดึงข้อมูลล่าสุด
+      }
     }
-  }, []);
+
+    // ตั้ง timeout ถ้าข้อมูลไม่ถูกโหลดใน 3 วินาที ให้เปลี่ยนเส้นทางไปยังหน้า /posts
+    const timeout = setTimeout(() => {
+      if (!latestData) {
+        router.push('/posts'); // เปลี่ยนเส้นทางไปยังหน้า /posts
+      }
+    }, 3000);
+
+    return () => clearTimeout(timeout); // ล้าง timeout เมื่อ component ถูก unmount
+  }, [latestData, router]);
 
   if (!latestData) {
     return <div>Loading...</div>;
@@ -84,7 +101,7 @@ export default function Home() {
             </div>
 
             {/*โฆษณา*/}
-            <div className="px-10 "/>
+            <div className="px-10 " />
             <div className="px-10 py-2 w-1/2 h-96 items-center ">
               <Carousel className="">
                 <CarouselContent>
@@ -96,7 +113,7 @@ export default function Home() {
                 <CarouselNext />
               </Carousel>
             </div>
-            
+
           </div>
 
           {/*แผนการดูแลสุขภาพรายวัน*/}
