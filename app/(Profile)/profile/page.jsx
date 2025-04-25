@@ -1,7 +1,6 @@
 import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
-
 const UserProfile = () => {
     // ฟังก์ชันหลักสำหรับแสดงหน้าโปรไฟล์ผู้ใช้
     return (

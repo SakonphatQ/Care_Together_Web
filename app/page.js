@@ -41,7 +41,7 @@ export default function Home() {
     if (!isFirstVisit) {
       // ถ้าเข้ามาครั้งแรก ให้บันทึกสถานะใน localStorage และเปลี่ยนเส้นทาง
       localStorage.setItem('isFirstVisit', 'false');
-      router.push('/Landing'); // เปลี่ยนเส้นทางไปยังหน้า /posts
+      router.push('/Landing'); // เปลี่ยนเส้นทางไปยังหน้า /Landing
     } else {
       // โหลดข้อมูลจาก Local Storage
       const savedHistory = localStorage.getItem('healthHistory');
@@ -50,7 +50,9 @@ export default function Home() {
         setLatestData(history[0]); // ดึงข้อมูลล่าสุด
       }
     }
+  }, [router]); // ใช้ router เป็น dependency เท่านั้น
 
+  useEffect(() => {
     // ตั้ง timeout ถ้าข้อมูลไม่ถูกโหลดใน 3 วินาที ให้เปลี่ยนเส้นทางไปยังหน้า /posts
     const timeout = setTimeout(() => {
       if (!latestData) {
@@ -59,7 +61,7 @@ export default function Home() {
     }, 3000);
 
     return () => clearTimeout(timeout); // ล้าง timeout เมื่อ component ถูก unmount
-  }, [latestData, router]);
+  }, [latestData, router]); // ใช้ latestData และ router เป็น dependency
 
   if (!latestData) {
     return <div>Loading...</div>;
