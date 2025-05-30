@@ -1,3 +1,5 @@
+Care Together Web is a web application designed to help communities connect, share resources, and support each other. Built with Next.js, it provides a modern, fast, and scalable platform for collaborative care and communication.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
